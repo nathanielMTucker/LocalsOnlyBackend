@@ -16,11 +16,16 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-const csp = require('express-csp-header');
-app.use(csp({
-    policies: {
-        'default-src': [csp.NONE],
-        'img-src': [csp.SELF],
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
+ 
+app.use(expressCspHeader({
+    directives: {
+        'default-src': [SELF],
+        'script-src': [SELF, INLINE, 'somehost.com'],
+        'style-src': [SELF, 'mystyles.net'],
+        'img-src': ['data:', 'images.com'],
+        'worker-src': [NONE],
+        'block-all-mixed-content': true
     }
 }));
 mongoose.connect(test, 
