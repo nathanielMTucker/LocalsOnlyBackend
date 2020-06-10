@@ -2,6 +2,7 @@ let router = require('express').Router();
 let Local = require('../../models/locals.model');
 
 router.route('/').post((req, res)=>{
+
     const name = req.body.name;
     const date = req.body.date;
     const description = req.body.description;
@@ -19,7 +20,6 @@ router.route('/').post((req, res)=>{
                 searchTags.push(tag.toLowerCase())
         });
     });
-    console.log(searchTags);
     
     const newLocal = new Local({
         name, 
@@ -34,7 +34,10 @@ router.route('/').post((req, res)=>{
     });
     
     newLocal.save()
-        .then(()=>{res.json(`new local {${newLocal.name}} has been saved to database`)})
+        .then(()=>{
+            res.json(`new local {${newLocal.name}} has been saved to database`);
+            console.log(`new local {${newLocal.name}} has been saved to database`);
+        })
         .catch(err=>{res.sendStatus(400).json(`Error adding local {${newLocal.name}} : ${err}`)});
 
 });

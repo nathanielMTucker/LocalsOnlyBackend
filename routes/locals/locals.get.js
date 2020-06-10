@@ -9,6 +9,8 @@ router.route('/').get((req,res)=>{
 });
 
 router.route('/:id').get((req, res)=>{
+    console.log("getting id for page");
+    
     var id = req.params.id;
     Local.findOne({_id: id}).then(local => {
         res.json(local);
