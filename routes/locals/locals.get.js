@@ -14,7 +14,7 @@ router.route('/:id').get((req, res)=>{
     var id = req.params.id;
     Local.findOne({_id: id}).then(local => {
         res.json(local);
-    }).catch(console.error);
+    }).catch(err => res.sendStatus(404).json(err));
 });
 
 router.route('/hashtags/:hashtags/address/:address').get((req,res)=>{
