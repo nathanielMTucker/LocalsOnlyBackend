@@ -52,7 +52,7 @@ const userGet = require('./routes/user/user.get');
 const userPost = require('./routes/user/user.post');
 const userDelete = require('./routes/user/user.delete');
 const userPut = require('./routes/user/user.put');
-app.use('/user', userGet, userDelete, userPost);
+app.use('/user', userGet, userDelete, userPost, userPut);
 
 
 app.listen(port, () => {
