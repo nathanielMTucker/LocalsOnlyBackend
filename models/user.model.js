@@ -2,15 +2,23 @@ const mongoose = require("mongoose");
 const S = mongoose.Schema;
 
 const Profile = new S({
+    authID: String,
     name: String,
-    currentLocation: String,
     homeLocation: Number,
-    email: String,
-    password: String
+    address : {
+        street : String,
+        apt : {
+            type : String,
+            required:false,
+        },
+        city:String,
+        state:String,
+        zip:String,
+    }
 }, 
 {
     timestamps : true
 });
 
-const User = mongoose.model("Test", Profile);
+const User = mongoose.model("Profile", Profile);
 module.exports = User;
