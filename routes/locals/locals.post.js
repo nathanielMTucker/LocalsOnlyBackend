@@ -12,9 +12,11 @@ let states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","C
                  "Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming","District of Columbia"  
                 ]
 let getAbbr = (state)=>{
-    for (let i = 0; i < states.length; i++){
-        if(state == states[i])
+    for (var i = 0; i < states.length; i++){
+        if(state === states[i].toLowerCase())
             return abbrs[i].toLowerCase();
+        else if(state === abbrs[i].toLowerCase())
+            return states[i].toLowerCase();
     }
 }
 router.route('/').post((req, res)=>{
