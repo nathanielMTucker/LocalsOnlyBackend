@@ -15,8 +15,14 @@ let getAbbr = (state)=>{
     for (var i = 0; i < states.length; i++){
         if(state === states[i].toLowerCase())
             return abbrs[i].toLowerCase();
-        else if(state === abbrs[i].toLowerCase())
-            return states[i].toLowerCase();
+        else return state.toLowerCase();
+    }
+}
+let getState = (abbr)=>{
+    for (var i = 0; i < abbrs.length; i++){
+        if(abbr === abbrs[i].toLowerCase())
+            return state[i].toLowerCase();
+        else return abbr.toLowerCase();
     }
 }
 router.route('/').post((req, res)=>{
@@ -25,6 +31,8 @@ router.route('/').post((req, res)=>{
     const date = req.body.date;
     const description = req.body.description;
     const address = req.body.address;
+    const abbr = getAbbr(address.state);
+    address.state = getState(address.state);
     const comments = req.body.comments;
     const hashtags = [name, ...req.body.hashtags];
     const rating = req.body.rating;
