@@ -3,18 +3,11 @@ const S = mongoose.Schema;
 
 const Profile = new S({
     authID: String,
+    email:String,
     name: String,
-    homeLocation: Number,
-    address : {
-        street : String,
-        apt : {
-            type : String,
-            required:false,
-        },
-        city:String,
-        state:String,
-        zip:String,
-    }
+    localTo: String,
+    softLocalTo:[{local:String, time:Number}],
+    role : String,
 }, 
 {
     timestamps : true

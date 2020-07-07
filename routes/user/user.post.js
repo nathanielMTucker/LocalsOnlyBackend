@@ -4,14 +4,15 @@ let User = require('../../models/user.model');
 router.route('/').post((req, res)=>{
     let name = req.body.name;
     let authID = req.body.authID;
-    let homeLocation = req.body.homeLocation;
-    let address = req.body.address;
+    let localTo = req.body.localTo;
+    let email = req.body.email;
 
     const newUser = new User({
-        name, 
-        address,
-        authID,
-        homeLocation
+        authID: authID,
+        email:email,
+        name: name,
+        localTo: localTo,
+        role : 'user',
     });
     
     newUser.save()

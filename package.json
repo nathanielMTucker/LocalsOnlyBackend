@@ -18,6 +18,7 @@
     "express-csp-header": "^4.0.0",
     "mongodb": "^3.5.5",
     "mongoose": "^5.9.7",
+    "node-geocoder": "^3.27.0",
     "parse-address-string": "0.0.3"
   },
   "engines": {

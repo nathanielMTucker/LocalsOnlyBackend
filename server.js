@@ -54,6 +54,8 @@ const userDelete = require('./routes/user/user.delete');
 const userPut = require('./routes/user/user.put');
 app.use('/user', userGet, userDelete, userPost, userPut);
 
+const mapGet = require('./routes/map/map.get');
+app.use('/map', mapGet);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

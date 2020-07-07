@@ -68,6 +68,9 @@ const localSchema = new S({
         min:1,
         max:5
     },
+    lat:String,
+    lng:String,
+    
     // image : {
     //     required: false,
     //     data:Buffer,
