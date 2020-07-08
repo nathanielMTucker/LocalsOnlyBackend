@@ -51,6 +51,8 @@ router.route('/').post((req, res)=>{
                 searchTags.push(tag.toLowerCase())
         });
     });
+    const lat = req.body.lat;
+    const lng = req.body.lng;
     
     const newLocal = new Local({
         name, 
@@ -62,6 +64,8 @@ router.route('/').post((req, res)=>{
         rating,
         addressTags,
         searchTags,
+        lat,
+        lng,
     });
     
     newLocal.save()
