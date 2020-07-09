@@ -66,7 +66,7 @@ router.route('/hashtags/:hashtags/address/:address').get((req,res)=>{
     }else{
         let hashtags = req.params.hashtags.toLowerCase().split(" ");
     
-        Local.find({addressTags:{$in:address}, searchTags:{$elemMatch:{$in:hashtags}}})
+        Local.find({addressTags:{$in:address}, searchTags:{$all:{$in:hashtags}}})
             .then(locals => {
                 res.json(getIDs(locals))
             })
