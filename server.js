@@ -28,7 +28,7 @@ app.use(expressCspHeader({
         'block-all-mixed-content': true
     }
 }));
-mongoose.connect(test, 
+mongoose.connect(uri, 
     {
         useNewUrlParser: true, 
         useCreateIndex: true,
