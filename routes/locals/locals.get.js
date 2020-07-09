@@ -58,7 +58,7 @@ router.route('/hashtags/:hashtags/address/:address').get((req,res)=>{
             address = [...address, add.postal_code.toLowerCase()];
     
     if(req.params.hashtags === 'all'){
-        Local.find({addressTags:{$in:address}})
+        Local.find({addressTags:{$all:{$in:address}}})
             .then(locals => {
                 res.json(getIDs(locals))
             })
@@ -66,7 +66,7 @@ router.route('/hashtags/:hashtags/address/:address').get((req,res)=>{
     }else{
         let hashtags = req.params.hashtags.toLowerCase().split(" ");
     
-        Local.find({addressTags:{$in:address}, searchTags:{$all:{$in:hashtags}}})
+        Local.find({addressTags:{$all:{$in:address}}, searchTags:{$elemMatch:{$in:hashtags}}})
             .then(locals => {
                 res.json(getIDs(locals))
             })
