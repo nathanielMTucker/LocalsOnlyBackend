@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "NODE_ENV=test echo \"Error: no test specified\" && exit 1",
-    "develop": "NODE_ENV=development node server.js",
+    "win-develop": "set NODE_ENV=develop&&node server.js",
+    "win-start":"",
+    "develop": "NODE_ENV=develop node server.js",
     "start": "NODE_ENV=production node server.js",
     "web": "node server.js"
   },

@@ -14,8 +14,8 @@ module.exports = {
     test: {
         connection: 'mongodb://localhost:27017/nmtucker2',
     },
-    development: {
-        connection: 'mongodb://localhost:27017/nmtucker2',
+    develop: {
+        connection: 'mongodb+srv://nmtucker2:UwXFICD6wjfBxJfb@cluster0-mgpfh.mongodb.net/test?retryWrites=true&w=majority',
     },
     staging: {
         connection: 'mongodb+srv://nmtucker2:UwXFICD6wjfBxJfb@cluster0-mgpfh.mongodb.net/test?retryWrites=true&w=majority',
