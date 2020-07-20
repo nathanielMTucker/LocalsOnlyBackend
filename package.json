@@ -4,8 +4,9 @@
   "description": "Backend handling for *localsonly*",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "test": "NODE_ENV=test echo \"Error: no test specified\" && exit 1",
+    "develop": "NODE_ENV=development node server.js",
+    "start": "NODE_ENV=production node server.js",
     "web": "node server.js"
   },
   "author": "Nathaniel Tucker",
