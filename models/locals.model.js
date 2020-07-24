@@ -68,14 +68,54 @@ const localSchema = new S({
         min: 1,
         max: 5
     },
-    lat: String,
-    lng: String,
-
-    // image : {
-    //     required: false,
-    //     data:Buffer,
-    //     contentType: String
-    // }
+    price : {
+        type:Number,
+        default:1,
+        min:1,
+        max:5
+    },
+    hours:{
+        monday:{
+            from:String,
+            to:String,
+            closed:Boolean
+        },
+        tuesday:{
+            from:String,
+            to:String,
+            closed:Boolean
+        },
+        wednesday:{
+            from:String,
+            to:String,
+            closed:Boolean
+        },
+        thursday:{
+            from:String,
+            to:String,
+            closed:Boolean
+        },
+        friday:{
+            from:String,
+            to:String,
+            closed:Boolean
+        },
+        saturday:{
+            from:String,
+            to:String,
+            closed:Boolean
+        },
+        sunday:{
+            from:String,
+            to:String,
+            closed:Boolean
+        },
+       
+    },
+    lat:String,
+    lng:String,
+    localsOnly:Boolean,
+    image : [{type:String}]
 },
     {
         timestamps: true,

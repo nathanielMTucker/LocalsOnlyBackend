@@ -4,7 +4,7 @@ let router = require('express').Router();
 let Local = require('../../models/locals.model');
 
 router.route('/').post((req, res)=>{
-    let {name, description, address, hashtags, rating, lat, lng} = req.body;
+    let {name, description, address, hashtags, rating, lat, lng, hours, localsOnly, } = req.body;
     // Local.findOne(
     //         { lat: }
     //     )
@@ -29,6 +29,8 @@ router.route('/').post((req, res)=>{
         searchTags,
         lat,
         lng,
+        hours,
+        localsOnly
     });
     newLocal.save((err, local)=>{
         if(err){
