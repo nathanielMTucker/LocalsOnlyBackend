@@ -39,7 +39,9 @@ let getIDs = (locals) => {
             rating: local.rating,
             reviewCount: local.reviewCount,
             lat: local.lat,
-            lng:local.lng
+            lng:local.lng,
+            hours:local.hours,
+            address:local.address
         })
     })
     return ids;
