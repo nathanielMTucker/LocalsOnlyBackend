@@ -74,6 +74,12 @@ const localSchema = new S({
         min:1,
         max:5
     },
+    price : {
+        type:Number,
+        default:1,
+        min:1,
+        max:5
+    },
     hours:{
         monday:{
             from:String,
