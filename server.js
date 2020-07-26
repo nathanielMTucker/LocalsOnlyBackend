@@ -55,6 +55,6 @@ app.use('/user', userGet, userDelete, userPost, userPut);
 const mapGet = require('./routes/map/map.get');
 app.use('/map', mapGet);
 
-app.listen(config.port, () => {
-    console.log(`Server is running on port: ${config.port}`);
+app.listen(env.port, () => {
+    console.log(`Server is running on port: ${env.port}`);
 });
