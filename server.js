@@ -1,18 +1,38 @@
+// require('dotenv').config({path:__dirname + '/.env'});
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./config');
 const env = config[process.env.NODE_ENV];
+const fileUpload = require('express-fileupload');
 
 const app = express();
 
+
 app.use(cors());
 app.use(express.json());
+app.use(fileUpload());
+app.post('/upload', (req,res)=>{
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+    if(req.files === null){
+        return res.status(400).json({msg:'No file uploaded'});
+    }
+
+    const file = req.files.file;
+
+    file.mv(`${__dirname}/../client/public/uploads/${file.name}`, err=>{
+        if(err){
+            console.error(err);
+            return res.status(500).send(err);
+        }
+
+        res.json({fileName: file.name, filePath:`/uploads/${file.name}`})
+    })
+})
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
 
@@ -55,6 +75,6 @@ app.use('/user', userGet, userDelete, userPost, userPut);
 const mapGet = require('./routes/map/map.get');
 app.use('/map', mapGet);
 
-app.listen(config.port, () => {
-    console.log(`Server is running on port: ${config.port}`);
+app.listen(env.port, () => {
+    console.log(`Server is running on port: ${env.port}`);
 });
