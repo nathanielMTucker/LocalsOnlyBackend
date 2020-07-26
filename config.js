@@ -22,5 +22,6 @@ module.exports = {
     },
     production: {
         connection: 'mongodb+srv://nmtucker2:UwXFICD6wjfBxJfb@cluster0-mgpfh.mongodb.net/test?retryWrites=true&w=majority',
+        port: process.env.PORT
     }
 }
