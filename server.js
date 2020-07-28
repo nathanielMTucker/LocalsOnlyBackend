@@ -1,12 +1,13 @@
-require('dotenv').config({path:__dirname + '/.env'});
+// require('dotenv').config({path:__dirname + '/.env'});
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const config = require('./config');
+const env = config[process.env.NODE_ENV];
 const fileUpload = require('express-fileupload');
+
 const app = express();
-const port = process.env.PORT || 5000;
-const uri = process.env.MONGODB_URI;
-const test = process.env.MONGODB_URI_TEST;
+
 
 app.use(cors());
 app.use(express.json());
@@ -34,7 +35,7 @@ app.use(function(req, res, next) {
   next();
 });
 const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
- 
+
 app.use(expressCspHeader({
     directives: {
         'default-src': [SELF],
@@ -45,17 +46,17 @@ app.use(expressCspHeader({
         'block-all-mixed-content': true
     }
 }));
-mongoose.connect(test, 
+mongoose.connect(env.connection,
     {
-        useNewUrlParser: true, 
+        useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
         autoIndex: false
     }
 ).catch(err => console.error("Unable to connect to database: " + err));
- 
+
 const connection = mongoose.connection;
-connection.once('open', ()=>{
+connection.once('open', () => {
     console.log('MongoDB database connection established successfully');
 });
 
@@ -74,6 +75,6 @@ app.use('/user', userGet, userDelete, userPost, userPut);
 const mapGet = require('./routes/map/map.get');
 app.use('/map', mapGet);
 
-app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
+app.listen(env.port, () => {
+    console.log(`Server is running on port: ${env.port}`);
 });

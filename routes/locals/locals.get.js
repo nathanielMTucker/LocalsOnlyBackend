@@ -7,25 +7,25 @@ router.route('/').get((req,res)=>{
         .then(locals => res.json(locals))
         .catch(err => res.status(400).json('Error: ' + err));
 });
-router.route('/card/:id').get((req, res)=>{
+router.route('/card/:id').get((req, res) => {
     console.log("getting card id for page");
-    
+
     var id = req.params.id;
-    Local.findOne({_id: id}).then(local => {
+    Local.findOne({ _id: id }).then(local => {
         res.json({
             name: local.name,
             desc: local.description,
             rating: local.rating,
             reviewCount: local.reviewCount,
-            
+
         });
     }).catch(err => res.sendStatus(400).json(err));
 });
-router.route('/:id').get((req, res)=>{
+router.route('/:id').get((req, res) => {
     console.log("getting id for page");
-    
+
     var id = req.params.id;
-    Local.findOne({_id: id}).then(local => {
+    Local.findOne({ _id: id }).then(local => {
         res.json(local);
     }).catch(err => res.sendStatus(404).json(err));
 });
@@ -49,7 +49,7 @@ let getIDs = (locals) => {
 
 router.route('/hashtags/:hashtags/address/:address').get((req,res)=>{
     console.log("getting in search");
-    
+
     var address = []
     addressParser(req.params.address,(err, add)=>{
         if(!err){
