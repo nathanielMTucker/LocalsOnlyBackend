@@ -29,7 +29,7 @@ router.route('/:id').get((req, res) => {
         res.json(local);
     }).catch(err => res.sendStatus(404).json(err));
 });
-let getIDs = (locals) => {
+let getIDs = locals => {
     let ids = [];
     locals.forEach(local => {
         ids.push({
