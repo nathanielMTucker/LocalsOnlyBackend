@@ -12,18 +12,20 @@ let states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","C
 
 
 let getAbbr = (state)=>{
+    console.log(states[2].toLowerCase()===state);
     for (var i = 0; i < states.length; i++){
         if(state.toLowerCase() === states[i].toLowerCase())
             return abbrs[i].toLowerCase();
-        else return state.toLowerCase();
+        
     }
+    return state.toLowerCase();
 }
 let getState = (abbr)=>{
     for (var i = 0; i < abbrs.length; i++){
-        if(abbr === abbrs[i].toLowerCase())
+        if(abbr.toLowerCase() === abbrs[i].toLowerCase())
             return state[i].toLowerCase();
-        else return abbr.toLowerCase();
     }
+    return abbr.toLowerCase();
 }
 
 module.exports = {getAbbr, getState}

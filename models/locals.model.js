@@ -44,7 +44,7 @@ const localSchema = new S({
         required: false,
     }],
     addressTags: [{
-        type: Array,
+        type: String,
         required: false
     }],
     searchTags: [{
@@ -67,12 +67,6 @@ const localSchema = new S({
         default: 1,
         min: 1,
         max: 5
-    },
-    price : {
-        type:Number,
-        default:1,
-        min:1,
-        max:5
     },
     price : {
         type:Number,
@@ -118,10 +112,20 @@ const localSchema = new S({
         },
        
     },
-    lat:String,
-    lng:String,
+    coors:{lat:String, lng:String},
     localsOnly:Boolean,
-    image : [{type:String}]
+    images : [{type:String}],
+    localTo: String,
+    quick: {
+        twentyOnePlus: Boolean,
+        familyFriendly:Boolean,
+        takeout:Boolean,
+        dineIn:Boolean,
+        delivery:Boolean,
+        dogFriendly:Boolean
+    },
+    website:String,
+    tel:String
 },
     {
         timestamps: true,

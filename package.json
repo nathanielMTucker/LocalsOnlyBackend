@@ -1,13 +1,13 @@
 {
   "name": "server",
-  "version": "0.2.0",
+  "version": "alpha.0.3.0",
   "description": "Backend handling for *localsonly*",
   "main": "server.js",
   "scripts": {
     "test": "NODE_ENV=test echo \"Error: no test specified\" && exit 1",
     "win-develop": "set NODE_ENV=develop&&nodemon server.js",
     "win-start":"set NODE_ENV=production&&node server.js",
-    "develop": "NODE_ENV=develop node server.js",
+    "develop": "NODE_ENV=develop nodemon server.js",
     "start": "NODE_ENV=production node server.js",
     "web": "node server.js"
   },

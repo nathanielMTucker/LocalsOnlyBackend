@@ -29,25 +29,51 @@ router.route('/:id').get((req, res) => {
         res.json(local);
     }).catch(err => res.sendStatus(404).json(err));
 });
-let getIDs = locals => {
+let getIDs = (locals, localTo) => {
     let ids = [];
+    
+    console.log('A: '+locals[0].localTo);
+        console.log('B: '+localTo);
     locals.forEach(local => {
-        ids.push({
-            id: local._id,
-            name: local.name,
-            description: local.description,
-            rating: local.rating,
-            reviewCount: local.reviewCount,
-            lat: local.lat,
-            lng:local.lng,
-            hours:local.hours,
-            address:local.address
-        })
+        
+            if(local.localsOnly){
+                if(local.localTo === localTo){
+                    ids.push({
+                        id: local._id,
+                        name: local.name,
+                        description: local.description,
+                        rating: local.rating,
+                        reviewCount: local.reviewCount,
+                        lat: local.coors.lat,
+                        lng:local.coors.lng,
+                        hours:local.hours,
+                        address:local.address,
+                        localTo:local.localTo,
+                        localsOnly:local.localsOnly  
+                    })
+                }
+            }else{
+                ids.push({
+                        id: local._id,
+                        name: local.name,
+                        description: local.description,
+                        rating: local.rating,
+                        reviewCount: local.reviewCount,
+                        lat: local.coors.lat,
+                        lng:local.coors.lng,
+                        hours:local.hours,
+                        address:local.address,
+                        localTo:local.localTo,
+                        localsOnly:local.localsOnly  
+                    })
+            }
+        
+        
     })
     return ids;
 }
 
-router.route('/hashtags/:hashtags/address/:address').get((req,res)=>{
+router.route('/h/:hashtags/a/:address/r/:role/l/:localTo').get((req,res)=>{
     console.log("getting in search");
 
     var address = []
@@ -64,7 +90,7 @@ router.route('/hashtags/:hashtags/address/:address').get((req,res)=>{
     if(req.params.hashtags === 'all'){
         Local.find({addressTags:{$all:address}})
             .then(locals => {
-                res.json(getIDs(locals))
+                res.json(getIDs(locals, req.params.localTo))
             })
             .catch(err => res.sendStatus(404).json(err));
     }else{
@@ -72,7 +98,7 @@ router.route('/hashtags/:hashtags/address/:address').get((req,res)=>{
     
         Local.find({addressTags:{$all:address}, searchTags:{$elemMatch:{$in:hashtags}}})
             .then(locals => {
-                res.json(getIDs(locals))
+                res.json(getIDs(locals, req.params.localTo))
             })
             .catch(err => res.sendStatus(404).json(err));
     }
