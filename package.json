@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "alpha.0.3.0",
+  "version": "0.3.0-alpha",
   "description": "Backend handling for *localsonly*",
   "main": "server.js",
   "scripts": {
